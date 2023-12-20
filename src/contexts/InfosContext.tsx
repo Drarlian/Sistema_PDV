@@ -3,9 +3,11 @@ import {ReactNode} from 'react';
 
 type Props = {
     statusJanela: boolean;
+    produtoAtual: Prod | null;
     alteraJanela: () => void;
     produtos: Prod[];
     procurarProduto: (codig: number) => boolean;
+    defineProdutoAtual: (codigo: number) => void;
 }
 
 interface TiposProvider {
@@ -15,6 +17,7 @@ interface TiposProvider {
 type Prod = {
     codigo: number,
     nome: string,
+    preco: number,
     quantidade: number,
     fornecedor: string,
 }
@@ -29,10 +32,12 @@ export const InfosProvider = ({children}: TiposProvider) => {
     }
 
     const [produtos, setProdutos] = useState<Prod[]>([
-        {codigo: 1, nome: 'Pão', quantidade: 5, fornecedor: 'Bauduco'},
-        {codigo: 2, nome: 'Lasanha', quantidade: 3, fornecedor: 'Sadia'},
-        {codigo: 3, nome: 'Sorvete de Chocolate', quantidade: 1, fornecedor: 'Nestle'},
+        {codigo: 1, nome: 'Pão', preco: 2.5, quantidade: 5, fornecedor: 'Bauduco'},
+        {codigo: 2, nome: 'Lasanha', preco: 20.1, quantidade: 3, fornecedor: 'Sadia'},
+        {codigo: 3, nome: 'Sorvete de Chocolate', preco: 4.33, quantidade: 1, fornecedor: 'Nestle'},
     ]);
+
+    const [produtoAtual, setProdutoAtual] = useState<Prod>({codigo: NaN, nome: '', preco: NaN, quantidade: NaN, fornecedor: ''},);
 
     function procurarProduto(codigo: number){
         let achou = false;
@@ -44,10 +49,13 @@ export const InfosProvider = ({children}: TiposProvider) => {
             }
           }
         
-        console.log(codigo);
-        console.log(achou);
         return achou;
     }
 
-    return <InfosContext.Provider value={{statusJanela, alteraJanela, produtos, procurarProduto}}>{children}</InfosContext.Provider>
+    function defineProdutoAtual(codigo: number){
+        const prod = produtos.filter((produto) => produto.codigo === codigo)[0];
+        setProdutoAtual(prod);
+    }
+
+    return <InfosContext.Provider value={{statusJanela, produtoAtual, alteraJanela, produtos, procurarProduto, defineProdutoAtual}}>{children}</InfosContext.Provider>
 }

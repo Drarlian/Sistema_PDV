@@ -25,6 +25,8 @@ export const DivLateral = styled.div<{status: boolean}>`
         /* margin-bottom: 10px; */
         padding: 10px 0px 10px 10px;
         
+        white-space: nowrap;  // Não quebra a linha quando estou fechando a div
+
         cursor: pointer;
         transition: all 0.5s ease;
 
