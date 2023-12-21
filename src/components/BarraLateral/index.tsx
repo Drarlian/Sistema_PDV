@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { DivLateral } from './styles';
 import { InfosContext } from '../../contexts/InfosContext';
+import { Link } from 'react-router-dom';
 
 
 const BarraLateral: React.FC = () => {
@@ -8,7 +9,7 @@ const BarraLateral: React.FC = () => {
 
   return (
     <DivLateral status={statusJanela}>
-      <div className='item-lateral'>Página Principal</div>
+      <Link to='/'><div className='item-lateral'>Página Inicial</div></Link>
       <div className='item-lateral'>Produtos</div>
       <div className='item-lateral' onClick={alteraJanela}>Voltar</div>
     </DivLateral>

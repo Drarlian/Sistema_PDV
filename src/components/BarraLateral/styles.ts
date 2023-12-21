@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DivLateral = styled.div<{status: boolean}>`
-    background-color: red;
+    background-color: rgb(147, 154, 246);
 
     display: flex;
     flex-direction: column;
@@ -18,10 +18,16 @@ export const DivLateral = styled.div<{status: boolean}>`
     transition: all 0.5s ease;
     overflow: hidden;  // Qualquer conteúdo que ultrapasse os limites do container será cortado e não será visível.
 
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
     .item-lateral{
         display: flex;
         justify-content: center;
-        font-size: large;
+        font-size: 1.2em;
+        font-weight: light;
         /* margin-bottom: 10px; */
         padding: 10px 0px 10px 10px;
         
@@ -35,7 +41,7 @@ export const DivLateral = styled.div<{status: boolean}>`
     }
 
     .item-lateral:hover{
-        background-color: green;
+        background-color: rgb(179, 184, 246);
     }
 
     @media (max-width: 800px){

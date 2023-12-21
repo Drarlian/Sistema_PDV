@@ -4,9 +4,10 @@ export const DivMenu = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: gray;
+    background-color: rgb(63, 72, 204);
+    color: white;
 
-    border-bottom: solid;
+    border-bottom: solid black;
 
     .botao-lateral{
         margin: 1rem;

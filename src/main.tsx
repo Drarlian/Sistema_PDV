@@ -5,14 +5,17 @@ import './index.css'
 import { InfosProvider } from './contexts/InfosContext.tsx'
 import { HashRouter } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from './contexts/AuthContext.tsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <InfosProvider>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </InfosProvider>
+    <AuthProvider>
+      <InfosProvider>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </InfosProvider>
+    </AuthProvider>
   </React.StrictMode>,
 )

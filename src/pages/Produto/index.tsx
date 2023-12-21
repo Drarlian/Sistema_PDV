@@ -2,10 +2,15 @@ import React from 'react';
 import { DivProduto } from './styles';
 import { useContext } from 'react';
 import { InfosContext } from '../../contexts/InfosContext';
+import Home from '../Home';
 
 
 const Produto: React.FC = () => {
   const { produtoAtual } = useContext(InfosContext);
+
+  if (Number.isNaN(produtoAtual?.codigo)){
+    return <Home />
+  }
 
   return (
     <DivProduto>
@@ -19,8 +24,8 @@ const Produto: React.FC = () => {
                 <div className='container1'>
                     <p>Código: {produtoAtual?.codigo}</p>
                     <p>Quantidade: {produtoAtual?.quantidade}</p>
-                    <p>Valor Unitário: {produtoAtual?.preco}</p>
-                    <p>Valor Total: {produtoAtual?.preco}</p>
+                    <p>Valor Uni: R${produtoAtual?.preco}</p>
+                    <p>Valor Total: R${produtoAtual?.preco}</p>
                     <p>Fornecedor: {produtoAtual?.fornecedor}</p>
                 </div>
                 <div className='container2'>
@@ -39,7 +44,7 @@ const Produto: React.FC = () => {
                     <p>Tipo de Operação: <strong>Venda</strong></p>
                 </div>
                 <div className='container4'>
-                    <div className='container4-filho'>
+                    <div className='container4-filho' style={{'borderRight': 'solid', 'borderColor': 'black'}}>
                         <div><p>Volumes</p></div>
                         <div className='container4-direita'><p>Quantidade</p></div>
                     </div>
