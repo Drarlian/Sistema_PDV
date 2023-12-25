@@ -6,24 +6,23 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const Home: React.FC = () => {
-  const {procurarProduto, defineProdutoAtual} = useContext(InfosContext);
+  const {procurarProduto, defineProdutoAtual } = useContext(InfosContext);
 
   const [codigo, setCodigo] = useState<string>('');
   const navigate = useNavigate();
 
-  function clicarProduto(e: React.FormEvent<HTMLButtonElement>, codigo: number){
+  function clicarProduto(e: React.FormEvent<HTMLButtonElement>, codigoTemp: number){
     e.preventDefault();
-    setCodigo('');
 
-    if (procurarProduto(codigo)){
+    if (procurarProduto(codigoTemp)){
       toast.success('Código encontrado!');
-      defineProdutoAtual(codigo);
+      defineProdutoAtual(codigoTemp);
+      setCodigo('');  // ?????
       navigate("/produto");
     } else{
       toast.error('Código não encontrado!');
     }
 
-    procurarProduto(codigo);  // FAZER ALGO SE FOR FALSE OU TRUE
   }
 
   return (

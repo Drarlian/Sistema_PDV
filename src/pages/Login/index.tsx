@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { DivLogin } from './styles.ts';
 import { AuthContext } from '../../contexts/AuthContext.tsx';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const { fazerLogin } = useContext(AuthContext)
@@ -9,14 +10,28 @@ const Login: React.FC = () => {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
 
-  function entrar(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
+  const navegar = useNavigate();
+
+  async function entrar(e: React.MouseEvent<HTMLButtonElement, MouseEvent>){
     e.preventDefault();
 
     if (login && senha){
+      const userResultado = await fazerLogin(login, senha);
       setLogin('');
       setSenha('');
 
-      return fazerLogin(login, senha);  // Tenho que alterar esse return, adicionando uma mensagem de falha caso as credenciais sejam invalidas.
+      if (userResultado){
+        if (userResultado.role == 'ADMIN'){
+          toast.success('Logando..')
+          navegar('/produtos')
+        } else if (userResultado.role === 'SELLER'){
+          toast.success('Logando..')
+          navegar('/')
+        } else{
+          toast.error('Credênciais Inválidas..')
+        }
+      }
+
     }
   }
 

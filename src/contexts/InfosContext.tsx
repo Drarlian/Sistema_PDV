@@ -8,6 +8,8 @@ type Props = {
     produtos: Prod[];
     procurarProduto: (codig: number) => boolean;
     defineProdutoAtual: (codigo: number) => void;
+    alteraQuantidadeProdutoAtual: (operacao: string) => void;
+    reiniciarQuantidadeProdutoAtual: () => void;
 }
 
 interface TiposProvider {
@@ -35,9 +37,16 @@ export const InfosProvider = ({children}: TiposProvider) => {
         {codigo: 1, nome: 'Pão', preco: 2.5, quantidade: 5, fornecedor: 'Bauduco'},
         {codigo: 2, nome: 'Lasanha', preco: 20.1, quantidade: 3, fornecedor: 'Sadia'},
         {codigo: 3, nome: 'Sorvete de Chocolate', preco: 4.33, quantidade: 1, fornecedor: 'Nestle'},
+        {codigo: 4, nome: 'Pão', preco: 2.5, quantidade: 5, fornecedor: 'Bauduco'},
+        {codigo: 5, nome: 'Lasanha', preco: 20.1, quantidade: 3, fornecedor: 'Sadia'},
+        {codigo: 6, nome: 'Sorvete de Chocolate', preco: 4.33, quantidade: 1, fornecedor: 'Nestle'},
+        {codigo: 7, nome: 'Pão', preco: 2.5, quantidade: 5, fornecedor: 'Bauduco'},
+        {codigo: 8, nome: 'Lasanha', preco: 20.1, quantidade: 3, fornecedor: 'Sadia'},
+        {codigo: 9, nome: 'Sorvete de Chocolate', preco: 4.33, quantidade: 1, fornecedor: 'Nestle'},
+        {codigo: 10, nome: 'Pão', preco: 2.5, quantidade: 5, fornecedor: 'Bauduco'},
     ]);
 
-    const [produtoAtual, setProdutoAtual] = useState<Prod>({codigo: NaN, nome: '', preco: NaN, quantidade: NaN, fornecedor: ''},);
+    const [produtoAtual, setProdutoAtual] = useState<Prod>({codigo: NaN, nome: '', preco: NaN, quantidade: NaN, fornecedor: ''});
 
     function procurarProduto(codigo: number){
         let achou = false;
@@ -54,8 +63,21 @@ export const InfosProvider = ({children}: TiposProvider) => {
 
     function defineProdutoAtual(codigo: number){
         const prod = produtos.filter((produto) => produto.codigo === codigo)[0];
+        prod.quantidade = 1;
         setProdutoAtual(prod);
     }
 
-    return <InfosContext.Provider value={{statusJanela, produtoAtual, alteraJanela, produtos, procurarProduto, defineProdutoAtual}}>{children}</InfosContext.Provider>
+    function alteraQuantidadeProdutoAtual(operacao: string){
+        if (operacao === '+'){
+            setProdutoAtual({...produtoAtual, quantidade: produtoAtual.quantidade + 1});
+        } else if (operacao === '-'){
+            setProdutoAtual({...produtoAtual, quantidade: produtoAtual.quantidade - 1});
+        }
+    }
+
+    function reiniciarQuantidadeProdutoAtual(){
+        setProdutoAtual({...produtoAtual, quantidade: 1})
+    }
+
+    return <InfosContext.Provider value={{statusJanela, produtoAtual, alteraJanela, produtos, procurarProduto, defineProdutoAtual, alteraQuantidadeProdutoAtual, reiniciarQuantidadeProdutoAtual}}>{children}</InfosContext.Provider>
 }

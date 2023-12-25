@@ -10,7 +10,6 @@ export const useApi = () => ({
             const { data } = await url.post('/auth/store/sign-in', {
                 login, password
             });
-            console.log(data);
             return data
         } catch(error: any){
             console.log(error.response.data.message);

@@ -83,6 +83,11 @@ export const DivProduto = styled.div`
         margin-right: 1rem;
         margin-left: 1rem;
         padding: 2px;
+
+        .botoes-container1{
+            display: flex;
+            margin-left: 3px;
+        }
     }
 
     .container1 p:nth-child(5){

@@ -16,5 +16,6 @@ export type User = {
 
 export type Props = {
     user: User | null,
-    fazerLogin: (login: string, senha: string) => Promise<boolean>
+    fazerLogin: (login: string, senha: string) => Promise<User | null>,
+    fazerLogout: () => void
 }

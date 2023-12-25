@@ -5,6 +5,7 @@ export const DivLateral = styled.div<{status: boolean}>`
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     border-radius: 3px;
 
     /* Deixando a barra fixa na lateral direita */
