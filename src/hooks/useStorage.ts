@@ -1,5 +1,3 @@
-// Criar um hook personalizado para mexer com o LocalStorage -> Adicionar, Pegar e Remover do LocalStorage
-
 export const useStorage = () => ({
     adicionarItem: (chave: string, item: {}) => {
         localStorage.setItem(chave, JSON.stringify(item));

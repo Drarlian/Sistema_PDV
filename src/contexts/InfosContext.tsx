@@ -33,7 +33,7 @@ export const InfosProvider = ({children}: TiposProvider) => {
         setStatusJanel(!statusJanela);
     }
 
-    const [produtos, setProdutos] = useState<Prod[]>([
+    const [produtos, _] = useState<Prod[]>([
         {codigo: 1, nome: 'Pão', preco: 2.5, quantidade: 5, fornecedor: 'Bauduco'},
         {codigo: 2, nome: 'Lasanha', preco: 20.1, quantidade: 3, fornecedor: 'Sadia'},
         {codigo: 3, nome: 'Sorvete de Chocolate', preco: 4.33, quantidade: 1, fornecedor: 'Nestle'},

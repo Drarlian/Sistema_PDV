@@ -4,10 +4,8 @@ import { DivRegistroProdutos } from './styles.ts';
 import { InfosContext } from '../../contexts/InfosContext.tsx';
 
 const RegistroProdutos: React.FC = () => {
-  // {codigo: NaN, nome: '', preco: NaN, quantidade: NaN, fornecedor: ''}
 
   const { produtos } = useContext(InfosContext);
-  // Estilizar essa página.
 
   return (
     <DivRegistroProdutos>
