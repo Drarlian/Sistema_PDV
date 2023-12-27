@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const url = axios.create({
     baseURL: 'https://api-gateway.bagaggio.com.br',
@@ -12,8 +13,7 @@ export const useApi = () => ({
             });
             return data
         } catch(error: any){
-            console.log(error.response.data.message);
+            toast.error(error.response.data.message);
         }
-        
     },
 });
